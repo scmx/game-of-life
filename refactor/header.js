@@ -1,14 +1,14 @@
-(function () {
-  function Header(controls) {
-    this.el = document.createElement('div');
-    this.el.classList.add('Header');
+;(function () {
+  function Header (controls) {
+    this.el = document.createElement('div')
+    this.el.classList.add('Header')
 
-    this.el.appendChild(controls.el);
+    this.el.appendChild(controls.el)
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Header;
+    module.exports = Header
   } else {
-    this.Header = Header;
+    this.Header = Header
   }
-})();
+})()
