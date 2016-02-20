@@ -29,7 +29,7 @@
         var cell = grid[h][w]
         this.context.fillStyle = cell === 1 ? '#000' : '#fff'
         this.context.fillRect(w * 11, h * 11, 10, 10)
-        if (mutate === false) { continue; }
+        if (mutate === false) { continue }
         var neighbors = [
           grid[h - 1] && grid[h - 1][w - 1],
           grid[h - 1] && grid[h - 1][w],
@@ -42,7 +42,7 @@
         ]
         var found = 0
         for (var i = 0; i < neighbors.length; i++) {
-          if (neighbors[i]) { found++; }
+          if (neighbors[i]) { found++ }
         }
         if (found === 3) {
           next[h][w] = 1

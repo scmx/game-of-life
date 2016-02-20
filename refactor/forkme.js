@@ -29,13 +29,13 @@ function getJSON (url, success, error) {
       success(data)
     } else {
       // We reached our target server, but it returned an error
-      if (typeof error === 'function') { error(request); }
+      if (typeof error === 'function') { error(request) }
     }
   }
 
   request.onerror = function () {
     // There was a connection error of some sort
-    if (typeof error === 'function') { error(request); }
+    if (typeof error === 'function') { error(request) }
   }
 
   request.send()

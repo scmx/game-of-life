@@ -56,8 +56,8 @@
   }
 
   Grid.prototype.toString = function () {
-    console.log(this.grid1.map(function (arr) { return arr.join(''); }).join(','))
-    return this.grid1.map(function (arr) { return arr.join(''); }).join(',')
+    console.log(this.grid1.map(function (arr) { return arr.join('') }).join(','))
+    return this.grid1.map(function (arr) { return arr.join('') }).join(',')
   }
 
   Grid.prototype.paint = function (posH, posW, dataGrid) {
