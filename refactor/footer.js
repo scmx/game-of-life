@@ -1,4 +1,8 @@
 ;(function () {
+  var Editor = window.Editor
+  var SaveButton = window.SaveButton
+  var PresetList = window.PresetList
+
   function Footer (controls) {
     this.el = document.createElement('div')
     this.el.classList.add('Footer')

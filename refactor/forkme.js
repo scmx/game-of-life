@@ -19,7 +19,7 @@ function ForkMe (url) {
 }
 
 function getJSON (url, success, error) {
-  var request = new XMLHttpRequest()
+  var request = new window.XMLHttpRequest()
   request.open('GET', url, true)
 
   request.onload = function () {

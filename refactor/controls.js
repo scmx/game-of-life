@@ -1,4 +1,11 @@
 ;(function (exports) {
+  var Anchor = window.Anchor
+  var ClearButton = window.ClearButton
+  var PauseButton = window.PauseButton
+  var PlayButton = window.PlayButton
+  var RandomButton = window.RandomButton
+  var RangeInput = window.RangeInput
+
   function PlayerControls () {
     this.el = document.createElement('div')
     this.el.classList.add('PlayerControls')

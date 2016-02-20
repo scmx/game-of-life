@@ -74,9 +74,9 @@
   Grid.prototype.resize = function (width, height) {
     console.log('resize')
     var beforeH = Math.floor(this.height - height / 2)
-    var afterH = this.height - height - beforeH
+    // var afterH = this.height - height - beforeH
     var beforeW = Math.floor(this.width - width / 2)
-    var afterW = this.width - width - beforeW
+    // var afterW = this.width - width - beforeW
     var grid1 = []
     var grid2 = []
     for (var h = 0; h < height; h++) {

@@ -1,4 +1,7 @@
 ;(function () {
+  var Grid = window.Grid
+  var Renderer = window.Renderer
+
   function Preset (title, grid, dataURL) {
     this.title = title
     this.el = document.createElement('img')

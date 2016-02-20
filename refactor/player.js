@@ -1,4 +1,7 @@
 ;(function () {
+  var Grid = window.Grid
+  var Renderer = window.Renderer
+
   function Player (controls) {
     this.el = document.createElement('div')
     this.el.classList.add('Player')

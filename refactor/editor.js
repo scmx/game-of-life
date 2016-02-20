@@ -1,4 +1,8 @@
 ;(function () {
+  var Grid = window.Grid
+  var Preset = window.Preset
+  var Renderer = window.Renderer
+
   function Editor (controls) {
     this.el = document.createElement('div')
     this.el.classList.add('Editor')
