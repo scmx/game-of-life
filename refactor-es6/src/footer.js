@@ -1,9 +1,9 @@
-;(function () {
-  var Editor = window.Editor
-  var SaveButton = window.SaveButton
-  var PresetList = window.PresetList
+import { Editor } from './editor'
+import { SaveButton } from './button'
+import { PresetList } from './preset'
 
-  function Footer (controls) {
+export class Footer {
+  constructor (controls) {
     this.el = document.createElement('div')
     this.el.classList.add('Footer')
 
@@ -12,10 +12,8 @@
     this.presetList = new PresetList()
     this.controls = controls
 
-    var _this = this
-
-    this.saveButton.el.addEventListener('click', function () {
-      _this.presetList.addPreset(_this.editor.generatePreset())
+    this.saveButton.el.addEventListener('click', () => {
+      this.presetList.addPreset(this.editor.generatePreset())
     })
 
     this.el.appendChild(this.controls.el)
@@ -23,10 +21,4 @@
     this.el.appendChild(this.saveButton.el)
     this.el.appendChild(this.presetList.el)
   }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Footer
-  } else {
-    this.Footer = Footer
-  }
-})()
+}

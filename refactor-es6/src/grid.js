@@ -1,5 +1,5 @@
-;(function () {
-  function Grid (width, height, value) {
+export class Grid {
+  constructor (width, height, value) {
     this.width = width
     this.height = height
     this.grid1 = []
@@ -22,11 +22,11 @@
     }
   }
 
-  Grid.prototype.clear = function () {
+  clear () {
     this.fill(null)
   }
 
-  Grid.prototype.randomize = function () {
+  randomize () {
     this.fill(random)
 
     function random () {
@@ -34,7 +34,7 @@
     }
   }
 
-  Grid.prototype.fill = function (value) {
+  fill (value) {
     for (var h = 0; h < this.height; h++) {
       var row1 = []
       var row2 = []
@@ -47,7 +47,7 @@
     }
   }
 
-  Grid.prototype.copy = function () {
+  copy () {
     var copy = []
     for (var h = 0; h < this.height; h++) {
       copy[h] = this.grid1[h].slice()
@@ -55,12 +55,12 @@
     return copy
   }
 
-  Grid.prototype.toString = function () {
+  toString () {
     console.log(this.grid1.map(function (arr) { return arr.join('') }).join(','))
     return this.grid1.map(function (arr) { return arr.join('') }).join(',')
   }
 
-  Grid.prototype.paint = function (posH, posW, dataGrid) {
+  paint (posH, posW, dataGrid) {
     var arr = dataGrid.split(',')
     console.log(posH, this.height, posH + arr.length)
     for (var h = 0; h < arr.length && posH + h < this.height; h++) {
@@ -71,7 +71,7 @@
     }
   }
 
-  Grid.prototype.resize = function (width, height) {
+  resize (width, height) {
     console.log('resize')
     var beforeH = Math.floor(this.height - height / 2)
     // var afterH = this.height - height - beforeH
@@ -100,10 +100,4 @@
     this.width = width
     this.height = height
   }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Grid
-  } else {
-    this.Grid = Grid
-  }
-})()
+}

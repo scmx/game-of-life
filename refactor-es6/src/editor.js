@@ -1,9 +1,9 @@
-;(function () {
-  var Grid = window.Grid
-  var Preset = window.Preset
-  var Renderer = window.Renderer
+import { Grid } from './grid'
+import { Preset } from './preset'
+import { Renderer } from './renderer'
 
-  function Editor (controls) {
+export class Editor {
+  constructor (controls) {
     this.el = document.createElement('div')
     this.el.classList.add('Editor')
 
@@ -17,10 +17,8 @@
 
     this.el.appendChild(this.renderer.el)
 
-    var _this = this
-
-    this.controls.rangeInput.el.addEventListener('change', function (event) {
-      _this.updateSize()
+    this.controls.rangeInput.el.addEventListener('change', (event) => {
+      this.updateSize()
     })
 
     function onMouseDown (event) {
@@ -48,44 +46,44 @@
       stop()
     }
 
-    function start () {
+    const start = () => {
       console.log('start')
-      _this.renderer.el.addEventListener('mousemove', onMouseMove)
-      _this.renderer.el.addEventListener('mouseleave', onMouseLeave)
+      this.renderer.el.addEventListener('mousemove', onMouseMove)
+      this.renderer.el.addEventListener('mouseleave', onMouseLeave)
       window.addEventListener('mouseup', onMouseUp)
     }
 
-    function pause () {
+    const pause = () => {
       console.log('pause')
-      _this.renderer.el.removeEventListener('mousemove', onMouseMove)
-      _this.renderer.el.addEventListener('mouseenter', onMouseEnter)
+      this.renderer.el.removeEventListener('mousemove', onMouseMove)
+      this.renderer.el.addEventListener('mouseenter', onMouseEnter)
     }
 
-    function unpause () {
+    const unpause = () => {
       console.log('unpause')
-      _this.renderer.el.addEventListener('mousemove', onMouseMove)
+      this.renderer.el.addEventListener('mousemove', onMouseMove)
     }
 
-    function stop () {
+    const stop = () => {
       console.log('stop')
-      _this.renderer.el.removeEventListener('mousemove', onMouseMove)
-      _this.renderer.el.removeEventListener('mouseleave', onMouseLeave)
-      _this.renderer.el.removeEventListener('mouseenter', onMouseEnter)
+      this.renderer.el.removeEventListener('mousemove', onMouseMove)
+      this.renderer.el.removeEventListener('mouseleave', onMouseLeave)
+      this.renderer.el.removeEventListener('mouseenter', onMouseEnter)
       window.removeEventListener('mouseup', onMouseUp)
     }
 
-    function paintGridAt (event) {
+    const paintGridAt = (event) => {
       var color = event.altKey ? 0 : 1
-      var renderer = _this.renderer
-      var h = Math.floor(event.layerY / renderer.el.height * _this.size)
-      var w = Math.floor(event.layerX / renderer.el.width * _this.size)
-      _this.grid.grid1[h][w] = color
-      _this.grid.grid2[h][w] = color
-      _this.renderer.render(false)
+      var renderer = this.renderer
+      var h = Math.floor(event.layerY / renderer.el.height * this.size)
+      var w = Math.floor(event.layerX / renderer.el.width * this.size)
+      this.grid.grid1[h][w] = color
+      this.grid.grid2[h][w] = color
+      this.renderer.render(false)
     }
   }
 
-  Editor.prototype.generatePreset = function () {
+  generatePreset () {
     return new Preset(
       'unnamed',
       this.grid,
@@ -93,7 +91,7 @@
     )
   }
 
-  Editor.prototype.updateSize = function () {
+  updateSize () {
     var value = +this.controls.rangeInput.el.value
     this.size = value
     if (this.grid) {
@@ -102,10 +100,4 @@
       this.renderer.render(false)
     }
   }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Editor
-  } else {
-    this.Editor = Editor
-  }
-})()
+}

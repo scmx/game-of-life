@@ -1,5 +1,5 @@
-;(function () {
-  function Renderer (grid) {
+export class Renderer {
+  constructor (grid) {
     this.grid = grid
     this.currentGrid = this.grid.grid1
 
@@ -11,7 +11,7 @@
     this.context.fillRect(0, 0, this.el.width, this.el.height)
   }
 
-  Renderer.prototype.render = function (mutate) {
+  render (mutate) {
     var grid, next
     var decider = this.currentGrid === this.grid.grid1
     if (mutate === false ? !decider : decider) {
@@ -55,14 +55,8 @@
     }
   }
 
-  Renderer.prototype.updateSize = function () {
+  updateSize () {
     this.el.width = this.grid.width * 11 - 1
     this.el.height = this.grid.height * 11 - 1
   }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Renderer
-  } else {
-    this.Renderer = Renderer
-  }
-})()
+}

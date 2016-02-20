@@ -1,12 +1,9 @@
-;(function (exports) {
-  var Anchor = window.Anchor
-  var ClearButton = window.ClearButton
-  var PauseButton = window.PauseButton
-  var PlayButton = window.PlayButton
-  var RandomButton = window.RandomButton
-  var RangeInput = window.RangeInput
+import { PlayButton, PauseButton, ClearButton, RandomButton } from './button'
+import { RangeInput } from './input'
+import { Anchor } from './anchor'
 
-  function PlayerControls () {
+export class PlayerControls {
+  constructor () {
     this.el = document.createElement('div')
     this.el.classList.add('PlayerControls')
 
@@ -28,8 +25,10 @@
     this.el.appendChild(this.backAnchor.el)
     this.el.appendChild(this.backAnchor2.el)
   }
+}
 
-  function EditorControls () {
+export class EditorControls {
+  constructor () {
     this.el = document.createElement('div')
     this.el.classList.add('EditorControls')
 
@@ -37,7 +36,4 @@
 
     this.el.appendChild(this.rangeInput.el)
   }
-
-  exports.PlayerControls = PlayerControls
-  exports.EditorControls = EditorControls
-})(typeof module === 'undefined' ? this : module.exports = {})
+}

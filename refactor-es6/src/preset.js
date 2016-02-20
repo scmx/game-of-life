@@ -1,8 +1,8 @@
-;(function () {
-  var Grid = window.Grid
-  var Renderer = window.Renderer
+import { Grid } from './grid'
+import { Renderer } from './renderer'
 
-  function Preset (title, grid, dataURL) {
+export class Preset {
+  constructor (title, grid, dataURL) {
     this.title = title
     this.el = document.createElement('img')
     this.el.src = dataURL || this.generateDataURL(grid)
@@ -18,15 +18,17 @@
     }
   }
 
-  Preset.prototype.generateDataURL = function (grid) {
-    var renderer = new Renderer(grid)
+  generateDataURL (grid) {
+    const renderer = new Renderer(grid)
     renderer.render(false)
     console.log(renderer)
     console.log(renderer.el.toDataURL('image/png'))
     return renderer.el.toDataURL('image/png')
   }
+}
 
-  function PresetList () {
+export class PresetList {
+  constructor () {
     this.el = document.createElement('div')
     this.el.classList.add('PresetList')
 
@@ -71,12 +73,12 @@
     ])
   }
 
-  PresetList.prototype.addPreset = function (preset) {
+  addPreset (preset) {
     this.presets.push(preset)
     this.el.appendChild(preset.el)
   }
 
-  PresetList.prototype.createPreset = function (title, dataGridArray) {
+  createPreset (title, dataGridArray) {
     var grid = []
     for (var h = 0; h < dataGridArray.length; h++) {
       var arr = []
@@ -92,12 +94,4 @@
     this.presets.push(preset)
     this.el.appendChild(preset.el)
   }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Preset
-    module.exports = PresetList
-  } else {
-    this.Preset = Preset
-    this.PresetList = PresetList
-  }
-})()
+}

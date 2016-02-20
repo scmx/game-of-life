@@ -1,8 +1,8 @@
-;(function () {
-  var Grid = window.Grid
-  var Renderer = window.Renderer
+import { Grid } from './grid'
+import { Renderer } from './renderer'
 
-  function Player (controls) {
+export class Player {
+  constructor (controls) {
     this.el = document.createElement('div')
     this.el.classList.add('Player')
 
@@ -10,32 +10,30 @@
     this.controls = controls
     this.renderer = new Renderer(this.grid)
 
-    var _this = this
-
-    this.controls.playButton.el.addEventListener('click', function () {
-      _this.play()
+    this.controls.playButton.el.addEventListener('click', () => {
+      this.play()
     })
 
-    this.controls.pauseButton.el.addEventListener('click', function () {
-      _this.pause()
+    this.controls.pauseButton.el.addEventListener('click', () => {
+      this.pause()
     })
 
-    this.controls.clearButton.el.addEventListener('click', function () {
-      _this.grid.clear()
-      if (!_this.running) {
-        _this.renderer.render()
+    this.controls.clearButton.el.addEventListener('click', () => {
+      this.grid.clear()
+      if (!this.running) {
+        this.renderer.render()
       }
     })
 
-    this.controls.randomButton.el.addEventListener('click', function () {
-      _this.grid.randomize()
-      if (!_this.running) {
-        _this.renderer.render()
+    this.controls.randomButton.el.addEventListener('click', () => {
+      this.grid.randomize()
+      if (!this.running) {
+        this.renderer.render()
       }
     })
 
-    this.controls.rangeInput.el.addEventListener('change', function (event) {
-      _this.updateSpeed()
+    this.controls.rangeInput.el.addEventListener('change', (event) => {
+      this.updateSpeed()
     })
 
     this.renderer.el.addEventListener('dragover', function (event) {
@@ -47,16 +45,15 @@
       }
     })
 
-    this.renderer.el.addEventListener('drop', function (event) {
+    this.renderer.el.addEventListener('drop', (event) => {
       console.log('drop', event)
-      var dataGrid = event.dataTransfer.getData('text/plain')
-      var renderer = _this.renderer
-      var grid = _this.grid
-      var h = Math.floor(event.layerY / renderer.el.height * grid.height)
-      var w = Math.floor(event.layerX / renderer.el.width * grid.width)
+      const dataGrid = event.dataTransfer.getData('text/plain')
+      const { height, width } = this.renderer.el
+      const h = Math.floor(event.layerY / height * this.grid.height)
+      const w = Math.floor(event.layerX / width * this.grid.width)
       console.log(h, w, dataGrid)
-      _this.grid.paint(h, w, dataGrid)
-      _this.renderer.render(false)
+      this.grid.paint(h, w, dataGrid)
+      this.renderer.render(false)
     })
 
     this.updateSpeed()
@@ -65,34 +62,23 @@
     this.el.appendChild(this.renderer.el)
   }
 
-  Player.prototype.play = function () {
-    var _this = this
+  play () {
+    const afterTimeout = () => {
+      this.timeout = setTimeout(afterTimeout, this.speed)
+      this.renderer.render()
+    }
+
     this.running = true
     afterTimeout()
-
-    function startTimeout () {
-      _this.timeout = setTimeout(afterTimeout, _this.speed)
-    }
-
-    function afterTimeout () {
-      startTimeout()
-      _this.renderer.render()
-    }
   }
 
-  Player.prototype.pause = function () {
+  pause () {
     this.running = false
     clearTimeout(this.timeout)
   }
 
-  Player.prototype.updateSpeed = function () {
+  updateSpeed () {
     var value = +this.controls.rangeInput.el.value
     this.speed = Math.pow(value, 3) + 18
   }
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Player
-  } else {
-    this.Player = Player
-  }
-})()
+}
