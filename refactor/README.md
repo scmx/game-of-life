@@ -1,5 +1,7 @@
 # Game of Life
 
-[View the result](http://scmx.github.io/game-of-life)
+[View the result](http://scmx.github.io/game-of-life/refactor)
 
-implemented at [VideumCodeup](http://videumcodeup.se) in Växjö on 3rd march 2015
+This is a refactored overkill version of the
+[original](http://github.com/scmx/game-of-life). There is now also an [es6
+version](../refactor-es6) that takes it even further.
