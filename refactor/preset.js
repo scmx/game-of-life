@@ -13,27 +13,10 @@
       console.log(dataGrid)
       event.dataTransfer.setData('text/plain', dataGrid)
     }
-
-    function onMouseMove (event) {
-      // console.log('move', event)
-    }
-
-    function onMouseLeave (event) {
-      console.log('leave', event)
-    }
-
-    function onMouseEnter (event) {
-      console.log('enter', event)
-    }
-
-    function onMouseUp (event) {
-      console.log('up', event)
-    }
   }
 
   Preset.prototype.generateDataURL = function (grid) {
     var renderer = new Renderer(grid)
-    // document.body.appendChild(renderer.el)
     renderer.render(false)
     console.log(renderer)
     console.log(renderer.el.toDataURL('image/png'))
@@ -48,7 +31,6 @@
 
     var _this = this
 
-    // setTimeout(function () {
     _this.createPreset('Glider', [
       '00000',
       '01010',
@@ -84,7 +66,6 @@
       '00000100000100000',
       '00000000000000000'
     ])
-  // })
   }
 
   PresetList.prototype.addPreset = function (preset) {

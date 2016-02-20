@@ -2,9 +2,6 @@
   function Player (controls) {
     this.el = document.createElement('div')
     this.el.classList.add('Player')
-    //
-    // var width  = (this.el.clientWidth  - 1) / 11
-    // var height = (this.el.clientHeight - 1) / 11
 
     this.grid = new Grid(30, 60)
     this.controls = controls
@@ -39,7 +36,6 @@
     })
 
     this.renderer.el.addEventListener('dragover', function (event) {
-      // console.log('dragover', event)
       for (var i = 0; i < event.dataTransfer.types.length; i++) {
         if (event.dataTransfer.types[i] === 'text/plain') {
           event.preventDefault()

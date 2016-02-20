@@ -26,7 +26,6 @@
     }
 
     function onMouseMove (event) {
-      // console.log('move', event)
       paintGridAt(event, 1)
     }
 
