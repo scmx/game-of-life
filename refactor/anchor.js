@@ -2,7 +2,7 @@
   function Anchor (href, content) {
     this.el = document.createElement('a')
     this.el.href = href
-    this.el.textContent = 'View the original'
+    this.el.textContent = content
   }
 
   if (typeof module !== 'undefined' && module.exports) {
