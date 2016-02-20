@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+canvas {
+  margin: auto;
+  background: #ddd;
+  border: 1px solid #ddd;
+}
+
+.BackLink {
+  margin: 5px;
+}
+
+.Button {
+  font-size: 20px;
+}
+
+.PlayerWrapper {
+  display: flex;
+  height: 100%;
+}
+
+.Player {
+  flex: 3;
+}
+
+.Footer {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.Editor {
+  display: inline-block;
+}
+
+.Editor canvas:active {
+  cursor: crosshair;
+}
+.PresetList {
+}
+.PresetList img {
+  margin: 5px;
+  border: 1px solid #ddd;
+}
+.Controls {
+  display: flex;
+}

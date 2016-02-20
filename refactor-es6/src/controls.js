@@ -16,7 +16,7 @@
     this.randomButton = new RandomButton()
     this.rangeInput = new RangeInput(3, 12, 1, 6)
     this.backAnchor = new Anchor('../', 'View the original')
-    this.backAnchor2 = new Anchor('../refactor-es6', 'View the es6 version')
+    this.backAnchor2 = new Anchor('../refactor', 'View the original refactor')
     this.backAnchor.el.classList.add('BackLink')
     this.backAnchor2.el.classList.add('BackLink')
 
